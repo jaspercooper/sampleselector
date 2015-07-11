@@ -5,8 +5,6 @@
 #' @param ... Takes distances arguments. Set km, meters, miles or feet to true in order to change the measure of distance that is output by the function.
 #' @return An N x N distance matrix
 #' @export
-
-
 create_distance_matrix <- function(latitudes,longitudes,...){
 
      if(length(latitudes)!=length(longitudes))stop(
