@@ -1,5 +1,4 @@
 #' Find sets of units that are separated by a minimum distance (spatial buffer).
-#'
 #' @param distance_matrix A distance matrix (see create_distance_matrix()).
 #' @param sims The number of iterations to run in order to find sets.
 #' @param threshold The minimum distance one unit should be from another (expressed in same units as distance matrix)
@@ -56,7 +55,6 @@ create_set_spatial_buffer <- function(distance_matrix,threshold,sims = 1000,...)
 
 
 #' For each unit, find the units that are within some distance
-#'
 #' @param distance_matrix A distance matrix (see create_distance_matrix()).
 #' @param threshold The minimum distance one unit should be from another (expressed in same units as distance matrix)
 #' @return A list of vectors indicating, for each unit, the units within the spatial threshold.
