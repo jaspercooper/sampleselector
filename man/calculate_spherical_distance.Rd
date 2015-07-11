@@ -12,6 +12,10 @@ calculate_spherical_distance(long1, lat1, long2, lat2, km = NULL,
 
 \item{lat1}{Latitude of point 1}
 
+\item{long2}{Longitude of point 2}
+
+\item{lat2}{Latitude of point 2}
+
 \item{km}{Express distance in kilometers}
 
 \item{miles}{Express distance in miles}
@@ -19,10 +23,6 @@ calculate_spherical_distance(long1, lat1, long2, lat2, km = NULL,
 \item{meters}{Express distance in meters}
 
 \item{feet}{Express distance in feet}
-
-\item{long1}{Longitude of point 2}
-
-\item{long1}{Latitude of point 2}
 }
 \value{
 The spherical distance between point 1 and point 2.

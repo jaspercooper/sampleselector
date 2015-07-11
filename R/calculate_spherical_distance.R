@@ -2,8 +2,8 @@
 #'
 #' @param long1 Longitude of point 1
 #' @param lat1 Latitude of point 1
-#' @param long1 Longitude of point 2
-#' @param long1 Latitude of point 2
+#' @param long2 Longitude of point 2
+#' @param lat2 Latitude of point 2
 #' @param km Express distance in kilometers
 #' @param miles Express distance in miles
 #' @param meters Express distance in meters
