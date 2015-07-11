@@ -1,42 +1,31 @@
 #' Calculate the distance of each unit to every other unit.
 #'
-#' @param x A number.
-#' @param y A number.
-#' @return The sum of \code{x} and \code{y}.
+#' @param latitudes A vector of latitudes of length N
+#' @param longitudes A vector of longitudes of length N
+#' @param ... Takes distances arguments. Set km, meters, miles or feet to true in order to change the measure of distance that is output by the function.
+#' @return An N x N distance matrix
 #' @examples
-#' add(1, 1)
-#' add(10, 1)
+#' create_distance_matrix(latitudes = latitudes,longitudes = longitudes,miles = T)
 
 
+create_distance_matrix <- function(latitudes,longitudes,...){
 
+     if(length(latitudes)!=length(longitudes))stop(
+          "Latitudes and longitudes vectors are not of same length. They should correspond to the same unit."
+     )
 
+     latlon <- cbind(latitudes,longitudes)
 
-
-
-dist.mat.gen <- function(latlon.orgs,latlon.dests){
-
-
-     dist.gen <- function(latlon.org,latlon.dests){
-
-          dists <- adply(.data = latlon.dests,
-                         .margins = 1,
-                         .fun = function(i){
-                              return(haversine(lat1  = latlon.org[1],
-                                               long1 = latlon.org[2],
-                                               lat2  = i[1],
-                                               long2 = i[2]))
-                         })[,2]
-
-          return(dists)
-
-     }
-
-     dist.mat <- adply(.data = latlon.orgs,.margins = 1,.fun = function(row.slice){
-          dist.gen(latlon.org = row.slice,
-                   latlon.dests = latlon.dests
+     distance_matrix <- apply(latlon,1,function(origin){
+          calculate_spherical_distance(long1 = origin[1],lat1 = origin[2],
+                                       long2 = latlon[,1],lat2 = latlon[,2],
+                                       ...
           )
-     })[,-1]
+     })
 
-     return(dist.mat)
+     dimnames(distance_matrix) <- list(1:dim(distance_matrix)[1],
+                                       1:dim(distance_matrix)[1])
 
+     return(distance_matrix)
 }
+
