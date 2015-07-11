@@ -19,27 +19,27 @@ create_set_spatial_buffer <- function(distance_matrix,threshold,sims = 1000,...)
 
      create_set <- function(exclude_set,sample_list,probability_weights){
           while(!all(is.na(unlist(exclude_set)))){
-          remove <-
-               sample(x = subset(sample_list,is.na(sample_list)==F),
-                      size = 1,replace = F,prob = subset(probability_weights,is.na(sample_list)==F))
+               remove <-
+                    sample(x = subset(sample_list,is.na(sample_list)==F),
+                           size = 1,replace = F,prob = subset(probability_weights,is.na(sample_list)==F))
 
-          sample_list[remove] <- NA
+               sample_list[remove] <- NA
+
+               remove_list <- exclude_set[[remove]]
+
+               for(i in 1:length(exclude_set)){
+                    if(any(remove_list%in%exclude_set[[i]])){
+                         exclude_set[[i]] <- exclude_set[[i]][-which(exclude_set[[i]]%in%remove_list)]
+                    }else{}
+               }
+
+               exclude_set[remove_list] <- NA
 
 
-
-          for(i in 1:length(exclude_set)){
-               if(remove%in%exclude_set[[i]]){
-                    exclude_set[[i]] <- exclude_set[[i]][-which(exclude_set[[i]]==remove)]
-               }else{}
           }
 
-          exclude_set[remove] <- NA
-
-
-          }
-
-     # Return the villages that made it through
-     return(which(sapply(exclude_set,class)=="integer"))
+          # Return the villages that made it through
+          return(which(sapply(exclude_set,class)=="integer"))
      }
 
      admissable_sets <-
