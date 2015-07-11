@@ -9,7 +9,7 @@
 #' @param meters Express distance in meters
 #' @param feet Express distance in feet
 #' @return The spherical distance between point 1 and point 2.
-#' @examples
+#' @export
 
 calculate_spherical_distance <-
      function(long1, lat1, long2, lat2,km = NULL,miles = NULL,meters = NULL,feet = NULL,...) {

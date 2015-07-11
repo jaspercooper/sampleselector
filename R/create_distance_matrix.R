@@ -4,8 +4,7 @@
 #' @param longitudes A vector of longitudes of length N
 #' @param ... Takes distances arguments. Set km, meters, miles or feet to true in order to change the measure of distance that is output by the function.
 #' @return An N x N distance matrix
-#' @examples
-#' create_distance_matrix(latitudes = latitudes,longitudes = longitudes,miles = T)
+#' @export
 
 
 create_distance_matrix <- function(latitudes,longitudes,...){
