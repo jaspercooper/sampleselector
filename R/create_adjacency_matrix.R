@@ -5,7 +5,7 @@
 #' @param zero_diagonal A logical argument indicating whether the diagonal of the adjacency matrix should be all 0's, such that a unit is not defined as adjacent to itself.
 #' @return An adjacency matrix with binary indicators for adjacency.
 #' @export
-create_adjacency_matrix <- function(distance_matrix,threshold,zero_diagonal = T){
+create_adjacency_matrix <- function(distance_matrix,threshold,zero_diagonal = T,...){
      adjacency_matrix <- (distance_matrix<5)*1
 
      if(zero_diagonal)
