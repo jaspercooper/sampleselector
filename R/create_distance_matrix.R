@@ -11,7 +11,7 @@ create_distance_matrix <- function(latitudes,longitudes,...){
           "Latitudes and longitudes vectors are not of same length. They should correspond to the same unit."
      )
 
-     latlon <- cbind(latitudes,longitudes)
+     lonlat <- cbind(longitudes,latitudes)
 
      distance_matrix <- apply(latlon,1,function(origin){
           calculate_spherical_distance(long1 = origin[1],lat1 = origin[2],
