@@ -15,7 +15,7 @@ create_distance_matrix <- function(latitudes,longitudes,...){
 
      distance_matrix <- apply(lonlat,1,function(origin){
           calculate_spherical_distance(long1 = origin[1],lat1 = origin[2],
-                                       long2 = latlon[,1],lat2 = latlon[,2],
+                                       long2 = lonlat[,1],lat2 = lonlat[,2],
                                        ...
           )
      })
