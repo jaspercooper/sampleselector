@@ -31,10 +31,27 @@ find_sets_biggest <- function(sample_selection_object){
      return (maximal_sets)
 }
 
+#' Find the set that maximizes the distance between units within a sample_selection object
+#' #'
+#' @param sample_selection_object A list of admissable samples, created by a create_set() function (create_set_spatial_buffer() etc.)
+#' @param distance_matrix A distance matrix, see function create_distance_matrix()
+#' @return A list of the  admissable sets that maximize the distance between the units in the set.
+#' @export
 
 
 
-
-
-
-
+find_sets_max_distance <- function(sample_selection_object, distance_matrix)
+{
+     if(!class(sample_selection_object)=="sample_selection")
+          stop("sample_selection_object must be a sample_selection object, created with a create_set() function.")
+     
+     set_total_distances <- sapply(sample_selection_object, function(set, distance_matrix)
+     {
+          return(sum(distance_matrix[set,set])/2)
+     },
+     dist.mat)
+     
+     sets_max_distance <- sample_selection_object[which(set_total_distances==max(set_total_distances))]
+     
+     return(sets_max_distance)
+}
