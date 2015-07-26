@@ -6,7 +6,7 @@
 #' @return An adjacency matrix with binary indicators for adjacency.
 #' @export
 create_adjacency_matrix <- function(distance_matrix,threshold,zero_diagonal = T,...){
-     adjacency_matrix <- (distance_matrix<5)*1
+     adjacency_matrix <- (distance_matrix<threshold)*1
 
      if(zero_diagonal)
           diag(adjacency_matrix) <- 0
