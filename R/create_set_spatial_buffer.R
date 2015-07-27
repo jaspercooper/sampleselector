@@ -4,15 +4,19 @@
 #' @param threshold The minimum distance one unit should be from another (expressed in same units as distance matrix)
 #' @return A list of admissable sets of units that meet the spatial criterion.
 #' @export
-create_set_spatial_buffer <- function(distance_matrix,threshold,sims = 1000,...){
-
+create_set_spatial_buffer <- function(distance_matrix,threshold,sims = 1000, probability_weights = NULL,...){
      exclude_set <- find_proximate_units(distance_matrix = distance_matrix,
                                          threshold = threshold,...)
 
-     proximity_summary <- sapply(exclude_set,length)
 
+     if(is.null(probability_weights)){
+
+     proximity_summary <- sapply(exclude_set,length)
      probability_weights <- proximity_summary/sum(proximity_summary)
      probability_weights <- probability_weights/sum(probability_weights)
+
+     }
+
 
      sample_list <- 1:dim(distance_matrix)[1]
 

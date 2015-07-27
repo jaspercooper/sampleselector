@@ -4,7 +4,8 @@
 \alias{create_set_spatial_buffer}
 \title{Find sets of units that are separated by a minimum distance (spatial buffer).}
 \usage{
-create_set_spatial_buffer(distance_matrix, threshold, sims = 1000, ...)
+create_set_spatial_buffer(distance_matrix, threshold, sims = 1000,
+  probability_weights = NULL, ...)
 }
 \arguments{
 \item{distance_matrix}{A distance matrix (see create_distance_matrix()).}
