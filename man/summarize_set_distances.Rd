@@ -5,7 +5,7 @@
 \title{Summarize the distances in a set of sets}
 \usage{
 summarize_set_distances(distance_matrix, sample_selection,
-  unit_distances = FALSE, sum_distances = FALSE)
+  unit_distances = FALSE, sum_distances = FALSE, min_distances = FALSE)
 }
 \arguments{
 \item{distance_matrix}{A distance matrix (see create_distance_matrix()).}

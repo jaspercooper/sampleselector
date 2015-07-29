@@ -4,8 +4,8 @@
 \alias{calculate_set_distances}
 \title{Calculate average distance in a given set}
 \usage{
-calculate_set_distances(distance_matrix, set, unit_distances = FALSE,
-  sum_distances = FALSE, min_distance = FALSE)
+calculate_set_distances(distance_matrix, set = NULL, unit_distances = FALSE,
+  sum_distances = FALSE, min_distances = FALSE)
 }
 \arguments{
 \item{distance_matrix}{A distance matrix (see create_distance_matrix()).}
