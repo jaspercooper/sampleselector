@@ -44,10 +44,27 @@ dist_mat_subset <- function(distance_matrix,set){
 #' @param unit_distances If unit_distances = TRUE, calculates distances at unit level.
 #' @param sum_distances If sum_distances = TRUE, sums instead of averaging.
 #' @export
-calculate_set_distances <- function(distance_matrix,set,unit_distances = FALSE,sum_distances = FALSE){
+calculate_set_distances <- function(distance_matrix,set,unit_distances = FALSE,sum_distances = FALSE,min_distance = FALSE){
+     if(min_distance&sum_distances&!unit_distances){
+          warning("Cannot sum minimum distances when unit_distances is FALSE.")
+     }
+
      dmat <-
           dist_mat_subset(distance_matrix = distance_matrix,
                           set = set)
+
+     if(min_distance&unit_distances){
+          diag(dmat) <- NA
+          min_dists <- apply(dmat,1,min,na.rm = T)
+          if(sum_distances){
+          return(sum(min_dists))
+               }else{min_dists}
+     }
+
+     if(min_distance&!unit_distances){
+          diag(dmat) <- NA
+          return(min(dmat,na.rm = T))
+     }
 
 
      if(!unit_distances&!sum_distances){
@@ -70,8 +87,9 @@ calculate_set_distances <- function(distance_matrix,set,unit_distances = FALSE,s
           return(data.frame(mean_unit_distances=mean_unit_distances))
      }
 
-}
 
+
+}
 
 
 
