@@ -44,16 +44,16 @@ dist_mat_subset <- function(distance_matrix,set){
 #' @param unit_distances If unit_distances = TRUE, calculates distances at unit level.
 #' @param sum_distances If sum_distances = TRUE, sums instead of averaging.
 #' @export
-calculate_set_distances <- function(distance_matrix,set,unit_distances = FALSE,sum_distances = FALSE,min_distance = FALSE){
+calculate_set_distances <- function(distance_matrix,set = NULL,unit_distances = FALSE,sum_distances = FALSE,min_distances = FALSE){
      if(min_distance&sum_distances&!unit_distances){
           warning("Cannot sum minimum distances when unit_distances is FALSE.")
      }
+     if(!is.null(set)){
+          dmat <-
+               dist_mat_subset(distance_matrix = distance_matrix,
+                               set = set)}
 
-     dmat <-
-          dist_mat_subset(distance_matrix = distance_matrix,
-                          set = set)
-
-     if(min_distance&unit_distances){
+     if(min_distances&unit_distances){
           diag(dmat) <- NA
           min_dists <- apply(dmat,1,min,na.rm = T)
           if(sum_distances){
@@ -61,7 +61,7 @@ calculate_set_distances <- function(distance_matrix,set,unit_distances = FALSE,s
                }else{min_dists}
      }
 
-     if(min_distance&!unit_distances){
+     if(min_distances&!unit_distances){
           diag(dmat) <- NA
           return(min(dmat,na.rm = T))
      }
@@ -100,12 +100,13 @@ calculate_set_distances <- function(distance_matrix,set,unit_distances = FALSE,s
 #' @param unit_distances If unit_distances = TRUE, calculates distances at unit level.
 #' @param sum_distances If sum_distances = TRUE, sums instead of averaging.
 #' @export
-summarize_set_distances <- function(distance_matrix,sample_selection,unit_distances = FALSE,sum_distances = FALSE){
+summarize_set_distances <- function(distance_matrix,sample_selection,unit_distances = FALSE,sum_distances = FALSE,min_distances = FALSE){
      sapply(X = sample_selection,
             FUN = calculate_set_distances,
             distance_matrix = distance_matrix,
             unit_distances = unit_distances,
-            sum_distances = sum_distances)
+            sum_distances = sum_distances,
+            min_distances = min_distances)
 }
 
 
